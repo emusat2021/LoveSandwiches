@@ -119,6 +119,7 @@ def calculate_surplus_data(sales_row):
     #pprint(stock)
     #pprint is easier to read
     stock_row = stock[-1]
+    #Requesting stock data from last line in tabel
     print(stock_row)
 
 #d1
