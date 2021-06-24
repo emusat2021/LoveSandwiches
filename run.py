@@ -4,6 +4,8 @@ from google.oauth2.service_account import Credentials
 """
 imports the Credentials class, which is part of the service_account function from Google auth library
 """
+from pprint import pprint
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -100,14 +102,43 @@ def update_sales_worksheet(data):
     print("Sales worksheet updated successfully.\n")
     #user feedback and narrow down bugs
 
+#d0
+def calculate_surplus_data(sales_row):
+    """
+    Compare sales with stock and calculate the surplus for each item type.
 
+    The surplus is defined as the sales figure subtracted from the stock:
+    - Positive surplus indicates waste
+    - Negative surplus indicates extra made when stock was sold out.
 
-#b
+    (em: stock(alrady exited) - sales(inserted above) = surplus)
+    """
+    print("Calculating surplus data...\n")
 
-data = get_sales_data()
-# print(data)
+    stock = SHEET.worksheet("stock").get_all_values()
+    #pprint(stock)
+    #pprint is easier to read
+    stock_row = stock[-1]
+    print(stock_row)
 
-#c
-sales_data = [int(num) for num in data]
-update_sales_worksheet(sales_data)
+#d1
+def main():
+    """
+    Run all program functions
+    """
+    """
+    #b
+    data = get_sales_data()
+    # print(data)
+    #c
+    sales_data = [int(num) for num in data]
+    update_sales_worksheet(sales_data)
+    """
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]
+    update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
 
+print("Welcome to Love Sandwiches Data Automation") 
+# is the first text appearing before the functions inside main function are called
+main()
