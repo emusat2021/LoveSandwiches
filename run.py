@@ -89,12 +89,12 @@ def validate_data(values):
     #b
     return True 
 
-
+"""
 def update_sales_worksheet(data):
-    """
+    
     #c
-    Update sales worksheet, add new row with the list data provided
-    """
+    # Update sales worksheet, add new row with the list data provided
+    
     print("Updating sales worksheet...\n")
     sales_worksheet = SHEET.worksheet("sales")
     #access sales worksheet from Google Sheet
@@ -105,10 +105,10 @@ def update_sales_worksheet(data):
 
 #f   
 def update_surplus_worksheet(data):
-    """
+
     #f
-    Update surplus worksheet, add new row with the list data provided
-    """
+    # Update surplus worksheet, add new row with the list data provided
+    
     print("Updating surplus worksheet...\n")
     surplus_worksheet = SHEET.worksheet("surplus")
     #access surplus worksheet from Google Sheet
@@ -116,6 +116,19 @@ def update_surplus_worksheet(data):
     #adds new row to the end in the worksheet selected
     print("Surplus worksheet updated successfully.\n")
     #user feedback and narrow down bugs
+"""
+
+#g refactoring updatae functions
+
+def update_worksheet(data, worksheet):
+    """
+    Receives a list of integers to be inserted into a worksheet
+    Update the relevant worksheet with the data provided
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
 
 #d0
 def calculate_surplus_data(sales_row):
@@ -165,17 +178,18 @@ def main():
     """
     data = get_sales_data()
     sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
+    #update_sales_worksheet(sales_data)
     
 
     #e
     #calculate_surplus_data(sales_data)
-
+    update_worksheet(sales_data, "sales") #g
     new_surplus_data = calculate_surplus_data(sales_data)
     #print(new_surplus_data)
     #f
-    update_surplus_worksheet(new_surplus_data)
-
+    #update_surplus_worksheet(new_surplus_data)
+    update_worksheet(new_surplus_data, "surplus") #g
+    
     
 print("Welcome to Love Sandwiches Data Automation") 
 # is the first text appearing before the functions inside main function are called
