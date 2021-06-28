@@ -71,6 +71,7 @@ def validate_data(values):
     Inside the try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
     or if there aren't exactly 6 values.
+
     (em: 1 -we check if there's exactly 6 values:
     2 -we check if all the values inside our data 
     can be converted into integers)
@@ -120,7 +121,20 @@ def calculate_surplus_data(sales_row):
     #pprint is easier to read
     stock_row = stock[-1]
     #Requesting stock data from last line in tabel
-    print(stock_row)
+    #e
+    #print(stock_row)
+    print(f"stock row: {stock_row}")
+    print(f"sales row: {sales_row}")
+    #e
+    surplus_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+    print(surplus_data)
+
+    return surplus_data
+
+
 
 #d1
 def main():
@@ -138,8 +152,13 @@ def main():
     data = get_sales_data()
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    #e
+    #calculate_surplus_data(sales_data)
 
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
+
+    
 print("Welcome to Love Sandwiches Data Automation") 
 # is the first text appearing before the functions inside main function are called
 main()
