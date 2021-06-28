@@ -66,7 +66,7 @@ def get_sales_data():
 
 
 def validate_data(values):
-    print(values)
+    #print(values)
     """
     Inside the try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
@@ -160,7 +160,25 @@ def calculate_surplus_data(sales_row):
     print(surplus_data)
 
     return surplus_data
+#h
+def get_last_5_entries_sales():
+    """
+    Collects columns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data
+    as a list of lists.
+    """
+    sales = SHEET.worksheet("sales")
+    #column = sales.col_values(3)
+    #print(column)
 
+    columns = []
+    for ind in range(1, 7): #test# for ind in range(6):
+        #print(ind)  test
+        column = sales.col_values(ind)
+        columns.append(column[-5:])#test#columns.append(column)
+        #: is to slice multiple values from the list
+    #test# pprint(columns)
+    return columns
 
 
 #d1
@@ -193,4 +211,10 @@ def main():
     
 print("Welcome to Love Sandwiches Data Automation") 
 # is the first text appearing before the functions inside main function are called
-main()
+#main() #test for h
+
+
+#h
+
+#get_last_5_entries_sales() #test
+sales_columns = get_last_5_entries_sales()
